@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'Dashboard'             => 'لوحة التحكم',
+    'Name'                  => 'الاسم',
+    'Main Category'         => 'الاسم بالرابط',
+    'Slug'                  => 'الوصف',
+    'Status'                => 'الحالة',
+    'Image'                 => 'الصورة',
+    'Action'                => 'الاجراءات',
+    'View'                  => 'عرض',
+    'Edit'                  => 'تعديل',
+    'Delete'                => 'حذف',
+    'Categories'            => 'الاقسام',
+    'Home'                  => 'الرئيسية',
+    'categories'            => 'الاقسام',
+    'Choose file'           => 'اختار صورة',
+    'Upload'                => 'تحميل',
+    'Select One'            => 'اختار',
+    'Disable'               => 'غير مفعل',
+    'Enabled'               => 'مفعل',
+    'Something Wrong, Please Try Again'     => 'يوجد خطأ ما يرجى المحاولة لاحقاً',
+    'This Section Does Not Exist'           => 'هذا القسم غير موجود',
+    'Added Successfully'                    => 'تمت الاضافة بنجاح',
+    'Successfully Updated'                  => 'تمت التحديث بنجاح',
+    'Deleted Successfully'                  => 'تمت الحذف بنجاح',
+];
