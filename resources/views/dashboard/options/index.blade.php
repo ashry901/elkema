@@ -31,12 +31,16 @@
             <section id="dom">
                 <div class="row">
                     <div class="col-12">
+
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">All Options</h4>
-                                <a class="heading-elements-toggle"><i
-                                        class="la la-ellipsis-v font-medium-3"></i></a>
+
+                                <a class="heading-elements-toggle">
+                                    <i class="la la-ellipsis-v font-medium-3"></i>
+                                </a>
                                 <div class="heading-elements">
+
                                     <ul class="list-inline mb-0">
                                         <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                         <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
@@ -44,13 +48,16 @@
                                         <li><a data-action="close"><i class="ft-x"></i></a></li>
                                     </ul>
                                 </div>
+
                             </div>
 
                             @include('dashboard.includes.alerts.success')
                             @include('dashboard.includes.alerts.errors')
 
+
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
+                                    {!! $options->links() !!}
                                     <table
                                         class="table display nowrap table-striped table-bordered">
                                         <thead class="">

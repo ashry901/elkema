@@ -79,7 +79,7 @@ class AttributesController extends Controller
                             ->with(['success' => 'Successfully Updated']);
 
         } catch (\Exception $ex) {
-            
+
             DB::rollback();
             return redirect()->route('admin.attributes')
                             ->with(['error' => 'Something Wrong, Please Try Again']);
@@ -90,19 +90,19 @@ class AttributesController extends Controller
     {
         try {
             //get specific categories and its translations
-            $brand = Brand::find($id);
+            $attribute = Attribute::find($id);
 
-            if (!$brand)
-                return redirect()->route('admin.brands')
+            if (!$attribute)
+                return redirect()->route('admin.attributes')
                             ->with(['error' => 'This Attribute Does Not Exist']);
 
-            $brand->delete();
+            $attribute->delete();
 
-            return redirect()->route('admin.brands')
+            return redirect()->route('admin.attributes')
                             ->with(['success' => 'Deleted Successfully']);
 
         } catch (\Exception $ex) {
-            return redirect()->route('admin.brands')
+            return redirect()->route('admin.attributes')
                             ->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }

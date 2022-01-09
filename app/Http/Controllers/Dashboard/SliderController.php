@@ -3,30 +3,20 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Enumerations\CategoryType;
-use App\Http\Requests\GeneralProductRequest;
-use App\Http\Requests\MainCategoryRequest;
-use App\Http\Requests\ProductImagesRequest;
-use App\Http\Requests\ProductPriceValidation;
-use App\Http\Requests\ProductStockRequest;
 use App\Http\Requests\SliderImagesRequest;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Image;
-use App\Models\Product;
-use App\Models\Slider;
-use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\Slider;
 use DB;
+use Illuminate\Support\Str;
+
+//use Illuminate\Support\Facades\DB;
 
 class SliderController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::select('id', 'photo', 'created_at', 'updated_at')
-                    ->orderBy('id', 'DESC')
-                    ->paginate(PAGINATION_COUNT);
-        return view('dashboard.sliders.images.index', compact('sliders'));
+        $images = Slider::orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
+        return view('dashboard.sliders.images.index', compact('images'));
     }
 
     public function addImages()
@@ -35,7 +25,6 @@ class SliderController extends Controller
         return view('dashboard.sliders.images.create', compact('images'));
     }
 
-    //to save images to folder only
     public function saveSliderImages(Request $request)
     {
         $file = $request->file('dzfile');
@@ -45,49 +34,53 @@ class SliderController extends Controller
             'name' => $filename,
             'original_name' => $file->getClientOriginalName(),
         ]);
-
     }
 
     public function saveSliderImagesDB(SliderImagesRequest $request)
     {
         try {
+            //return $request;
+            DB::beginTransaction();
+
             // save dropzone images
             if ($request->has('document') && count($request->document) > 0) {
                 foreach ($request->document as $image) {
                     Slider::create([
+                        // 'imageable_id' => $event->id, // if u have colmn
+                        // 'imageable_type' => 'App\Models\Event',
                         'photo' => $image,
                     ]);
                 }
             }
-
+            DB::commit();
             return redirect()->back()->with(['success' => 'Successfully Updated']);
 
-        } catch (\Exception $ex) {
-
+        }catch(\Exception $ex){
+            DB::rollback();
+            return redirect()->back()->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         try {
-            DB::beginTransaction();
 
-            //get specific categories and its translations
-            $slider = Slider::orderBy('id', 'DESC')->find($id);
+            $images = Slider::find($id);
 
-            if (!$slider)
-                return redirect()->route('admin.sliders')
-                                ->with(['error' => 'This Section Does Not Exist']);
-            $slider->delete();
+            if (!$images)
+                return redirect()->route('dashboard.sliders.images.create')->with(['error' => 'This Photo Does Not Exist']);
 
-            DB::commit();
-            return redirect()->route('admin.sliders')
-                            ->with(['success' => 'Deleted Successfully']);
+            $image = Str::after($images->photo, 'images/sliders/');
+            $image = public_path('images/sliders/' . $image);
+            unlink($image); //delete from folder
 
-        } catch (\Exception $ex) {
-            DB::rollback();
-            return redirect()->route('admin.sliders')
-                            ->with(['error' => 'Something Wrong, Please Try Again']);
+            $images->delete();
+
+            return redirect()->back()->with(['success' => 'Successfully Deleted']);
+
+        }catch(\Exception $ex){
+
+            return redirect()->back()->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }
 

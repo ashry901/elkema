@@ -1,22 +1,21 @@
-<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow "
-        data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow " data-scroll-to-active="true">
     <div class="main-menu-content">
-        <ul class="navigation navigation-main"
-                id="main-menu-navigation" data-menu="menu-navigation">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item">
                 <a href="{{route('admin.dashboard')}}">
                     <i class="la la-home"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">
-                        Dashboard
+                        {{__('admin/sidebar.Dashboard')}}
                     </span>
                 </a>
             </li>
             {{-- {{request()->is('admin/main_categories') ? 'open-menu' : ''}} --}}
-            <li class="nav-item">
-                <a href="#">
+
+            <li class=" nav-item">
+                <a href="{{route('admin.maincategories')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Main Category
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/categories.Categories')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Category::count()}}
@@ -24,95 +23,55 @@
                 </a>
 
                 <ul class="menu-content">
-                    <li>
-                        <a class="menu-item" href="#" data-i18n="nav.templates.vert.main">
-                            All Main Category
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="menu-item" href="{{route('admin.maincategories')}}">
-                                    View All
-                                </a>
-                            </li>
 
-                            <li>
-                                <a class="menu-item" href="{{route('admin.maincategories.create')}}">
-                                    Add New
-                                </a>
-                            </li>
-                        </ul>
+                    <li>
+                        <a class="menu-item" href="{{route('admin.maincategories')}}">
+                            <i></i><span data-i18n="Crypto">
+                                {{__('admin/sidebar.Mains Sections')}}
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="menu-item" href="{{route('admin.maincategories.create')}}">
+                            <i></i><span data-i18n="Sales">
+                                {{__('admin/sidebar.Add Main Section')}}
+                            </span>
+                        </a>
                     </li>
                 </ul>
             </li>
 
+
             <li class="nav-item">
-                <a href="#">
+                <a href="{{route('admin.brands')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Brands
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Brands')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Brand::count()}}
                     </span>
                 </a>
-
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                            href="#"
-                            data-i18n="nav.templates.vert.main">
-                            All brands
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.brands')}}">
-                                    View All
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="menu-item" href="{{route('admin.brands.create')}}">
-                                    Add New
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
 
-            <li class=" nav-item">
-                <a href="#">
-                    <i class="la la-briefcase"></i>
-                    <span class="menu-title" data-i18n="nav.project.main">Tags</span>
+            <li class="nav-item">
+                <a href="{{route('admin.tags')}}">
+                    <i class="ft-align-justify"></i>
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Tags')}}
+                    </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Tag::count()}}
                     </span>
                 </a>
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                            href="{{route('admin.tags')}}"
-                            data-i18n="nav.project.project_summary">
-                            View All
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="menu-item"
-                            href="{{route('admin.tags.create')}}"
-                            data-i18n="nav.project.project_tasks">
-                            Add New
-                        </a>
-                    </li>
-                </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#">
+            <li class=" nav-item">
+                <a href="{{route('admin.products')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Product
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Products')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Product::count()}}
@@ -120,73 +79,43 @@
                 </a>
 
                 <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                            href="#"
-                            data-i18n="nav.templates.vert.main">
-                            All Product
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.products')}}">
-                                    View All
-                                </a>
-                            </li>
 
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.products.general.create')}}">
-                                    Add New
-                                </a>
-                            </li>
-                        </ul>
+                    <li class="active">
+                        <a class="menu-item" href="{{route('admin.products')}}">
+                            <i></i><span data-i18n="Crypto">
+                                {{__('admin/sidebar.All Products')}}
+                            </span>
+                        </a>
                     </li>
+
+                    <li class="active">
+                        <a class="menu-item" href="{{route('admin.products.general.create')}}">
+                            <i></i><span data-i18n="Sales">
+                                {{__('admin/sidebar.Add Product')}}
+                            </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 
             <li class="nav-item">
-                <a href="#">
+                <a href="{{route('admin.attributes')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Attributes
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Attributes')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Attribute::count()}}
                     </span>
                 </a>
-
-                <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                            href="#"
-                            data-i18n="nav.templates.vert.main">
-                            All Attributes
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.attributes')}}">
-                                    View All
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.attributes.create')}}">
-                                    Add New
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
             </li>
 
-            <li class="nav-item">
-                <a href="#">
+            <li class=" nav-item">
+                <a href="{{route('admin.options')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Options
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Options')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Option::count()}}
@@ -194,60 +123,60 @@
                 </a>
 
                 <ul class="menu-content">
-                    <li>
-                        <a class="menu-item"
-                            href="#"
-                            data-i18n="nav.templates.vert.main">
-                            All Options
-                        </a>
-                        <ul class="menu-content">
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.options')}}">
-                                    View All
-                                </a>
-                            </li>
 
-                            <li>
-                                <a class="menu-item"
-                                    href="{{route('admin.options.create')}}">
-                                    Add New
-                                </a>
-                            </li>
-                        </ul>
+                    <li>
+                        <a class="menu-item" href="{{route('admin.options')}}">
+                            <i></i><span data-i18n="Crypto">
+                                {{__('admin/sidebar.All Options')}}
+                            </span>
+                        </a>
                     </li>
+
+                    <li>
+                        <a class="menu-item" href="{{route('admin.options.create')}}">
+                            <i></i><span data-i18n="Sales">
+                                {{__('admin/sidebar.Add Options')}}
+                            </span>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 
             <li class="nav-item">
-                <a href="#">
+                <a href="{{route('admin.sliders')}}">
                     <i class="ft-align-justify"></i>
-                    <span class="menu-title" data-i18n="nav.templates.main">
-                        Sliders
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Sliders')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
                         {{\App\Models\Slider::count()}}
                     </span>
                 </a>
+            </li>
 
-                <ul class="menu-content">
-                    {{-- {{route('admin.sliders')}} --}}
-                    <li>
-                        <a class="menu-item"
-                            href="{{route('admin.sliders')}}">
-                            View All
-                        </a>
-                    </li>
+            <li class="nav-item">
+                <a href="{{route('admin.sliderups')}}">
+                    <i class="ft-align-justify"></i>
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Sliders Up')}}
+                    </span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">
+                        {{\App\Models\Sliderup::count()}}
+                    </span>
+                </a>
+            </li>
 
-                    <li>
-                        <a class="menu-item"
-                            href="{{route('admin.sliders.create')}}"
-                            data-i18n="nav.templates.vert.main">
-                            Add New Sliders
-                        </a>
-
-                    </li>
-                </ul>
+            <li class=" nav-item">
+                <a href="{{route('admin.sections')}}">
+                    <i class="ft-align-justify"></i>
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.Sections')}}
+                    </span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">
+                        {{\App\Models\Section::count()}}
+                    </span>
+                </a>
             </li>
 
             <li class="nav-item">
@@ -285,6 +214,7 @@
                     </li>
                 </ul>
             </li>
+
 
 
         </ul>

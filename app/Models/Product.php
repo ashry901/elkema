@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-
     use Translatable,
         SoftDeletes;
 
     protected $with = ['translations'];
+
+    protected $translatedAttributes = ['name', 'description', 'short_description'];
 
     protected $fillable = [
         'brand_id',
@@ -30,10 +31,12 @@ class Product extends Model
         'is_active'
     ];
 
+    protected $hidden = ['translations'];
+
     protected $casts = [
-        'manage_stock' => 'boolean',
-        'in_stock' => 'boolean',
-        'is_active' => 'boolean',
+        'manage_stock'  => 'boolean',
+        'in_stock'      => 'boolean',
+        'is_active'     => 'boolean',
     ];
 
     protected $dates = [
@@ -51,8 +54,6 @@ class Product extends Model
         ];
     */
 
-    protected $translatedAttributes = ['name', 'description', 'short_description'];
-
     public function brand()
     {
         return $this->belongsTo(Brand::class)->withDefault();
@@ -60,7 +61,7 @@ class Product extends Model
 
     public function getActive()
     {
-        return $this -> is_active == 0 ? 'Disable' : 'Enabled';
+        return $this -> is_active == 0 ? 'Enabled' : 'Disable';
     }
 
     public function categories()
@@ -88,8 +89,23 @@ class Product extends Model
         return $this->hasMany(Image::class, 'product_id');
     }
 
-    public function getPhotoAttribute($val)
+    public function hasStock($quantity)
     {
-        return ($val !== null) ? asset('ashry/images/products/' . $val) : "";
+        return $this->qty >= $quantity;
+    }
+
+    public function outOfStock()
+    {
+        return $this->qty === 0;
+    }
+
+    public function inStock()
+    {
+        return $this->qty >= 1;
+    }
+
+    public function getTotal($converted = true)
+    {
+        return $total =  $this->special_price ?? $this -> price;
     }
 }

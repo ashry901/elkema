@@ -25,13 +25,13 @@ class OptionsController extends Controller
     public function index()
     {
         $options = Option::with([
-                'product' => function($prod){
-                    $prod->select('id');
-                },
-                'attribute' => function($attr){
-                    $attr->select('id');
-                }
-            ])
+            'product' => function($prod){
+                $prod->select('id');
+            },
+            'attribute' => function($attr){
+                $attr->select('id');
+            }
+        ])
             ->select('id', 'product_id', 'attribute_id', 'price')
             ->orderBy('id', 'DESC')
             ->paginate(PAGINATION_COUNT);
@@ -67,12 +67,12 @@ class OptionsController extends Controller
 
             DB::commit();
             return redirect()->route('admin.options')
-                            ->with(['success' => 'Successfully Added']);
+                ->with(['success' => 'Successfully Added']);
 
         }catch (\Exception $ex) {
             DB::rollback();
             return redirect()->route('admin.options')
-                            ->with(['error' => 'Something Wrong, Please Try Again']);
+                ->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }
 
@@ -85,7 +85,7 @@ class OptionsController extends Controller
 
         if (!$data['option'])
             return redirect()->route('admin.options')
-                    ->with(['error' => 'This Section Does Not Exist']);
+                ->with(['error' => 'This Section Does Not Exist']);
 
         $data['products'] = Product::active()->select('id')->get();
         $data['attributes'] = Attribute::select('id')->get();
@@ -102,7 +102,7 @@ class OptionsController extends Controller
 
             if (!$option)
                 return redirect()->route('admin.options')
-                                ->with(['error' => 'This Section Does Not Exist']);
+                    ->with(['error' => 'This Section Does Not Exist']);
 
             $option->update($request->only(['price', 'product_id', 'attribute_id']));
 
@@ -112,12 +112,12 @@ class OptionsController extends Controller
 
             DB::commit();
             return redirect()->route('admin.options')
-                            ->with(['success' => 'Successfully Updated']);
+                ->with(['success' => 'Successfully Updated']);
 
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->route('admin.options')
-                            ->with(['error' => 'Something Wrong, Please Try Again']);
+                ->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }
 
@@ -131,18 +131,18 @@ class OptionsController extends Controller
 
             if (!$option)
                 return redirect()->route('admin.options')
-                        ->with(['error' => 'This Section Does Not Exist']);
+                    ->with(['error' => 'This Section Does Not Exist']);
 
             $option->delete();
 
             DB::commit();
             return redirect()->route('admin.options')
-                    ->with(['success' => 'Deleted Successfully']);
+                ->with(['success' => 'Deleted Successfully']);
 
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->route('admin.options')
-                    ->with(['error' => 'Something Wrong, Please Try Again']);
+                ->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }
 

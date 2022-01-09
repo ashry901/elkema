@@ -6,7 +6,7 @@
                 <aside id="widget_mfn_login-2" class="widget widget_mfn_login">
                     <div class="mfn-login">
                         <img width="100"
-                            src="{{asset('ashry/front/images/marble/Logo1.png')}}"
+                            src="{{asset('ashry/front/images/logo/elkema.png')}}"
                             alt="ElKemma" />
 
                     </div>

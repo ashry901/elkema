@@ -19,7 +19,14 @@ class MainCategoryRequest extends FormRequest
             'name' => 'required',
             //'type' => 'required|in:1,2',
             'slug' => 'required|unique:categories,slug,'.$this->id,
-            'photo' => 'required_without:id|mimes:jpg,jpeg,png'
+            'photo' => 'required_without:id|mimes:jpg,jpeg,png|max:1024'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            //'Marble' => 'Marble',
         ];
     }
 }

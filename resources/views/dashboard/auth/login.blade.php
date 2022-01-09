@@ -9,8 +9,8 @@
                 <div class="card-header border-0">
                     <div class="card-title text-center">
                         <div class="p-1">
-                            <img src="{{asset('cpanel/metronic/app-assets/images/logo/logo-dark.png')}}"
-                                    alt="branding logo">
+                            <img src="{{asset('ashry/backend/app-assets/images/logo/thumbs-uppng.png')}}"
+                                 width="100" alt="logo">
                         </div>
                     </div>
                     <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">

@@ -49,7 +49,7 @@
 
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
-                                    {{-- scroll-horizontal --}}
+                                    {!! $products->links() !!}
                                     <table class="table display nowrap table-striped table-bordered">
                                         <thead class="">
                                             <tr>
@@ -73,20 +73,18 @@
                                                         <div class="btn-group" role="group"
                                                                 aria-label="Basic example">
                                                             <a href="{{route('admin.products.price', $product->id)}}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                Price
-                                                            </a>
+                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Price</a>
 
                                                             <a href="{{route('admin.products.images', $product->id)}}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                Img
-                                                            </a>
+                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Img</a>
 
                                                             <a href="{{route('admin.products.stock', $product->id)}}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                Stock
-                                                            </a>
+                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Stock</a>
+
                                                         </div>
+
+                                                        <a href="{{route('admin.products.general.edit', $product->id)}}"
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
 
                                                         <a href="{{route('admin.products.delete', $product->id)}}"
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">

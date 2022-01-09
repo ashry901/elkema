@@ -12,25 +12,27 @@ class ProductController extends Controller
     public function productsBySlug($slug)
     {
         $data=[];
-        $data['product'] = Product::where('slug',$slug) -> first();  //improve select only required fields
-        if (!$data['product']){ ///  redirect to previous page with message
+        //improve select only required fields
+        $data['product'] = Product::where('slug', $slug)->first();
+        if (!$data['product']){
+                //  redirect to previous page with message
             }
 
         $product_id = $data['product']->id;
-        $product_categories_ids = $data['product']->categories->pluck('id'); // [1,26,7] get all categories that product on it
+        // [1,26,7] get all categories that product on it
+        $product_categories_ids =  $data['product']->categories->pluck('id');
 
-        $data['product_attributes'] = Attribute::whereHas('options' , function ($q) use($product_id){
+        $data['product_attributes'] =  Attribute::whereHas('options' , function ($q) use($product_id){
             $q -> whereHas('product',function ($qq) use($product_id){
                 $qq -> where('product_id',$product_id);
             });
         })->get();
 
-        $data['related_products'] = Product::whereHas('categories',function ($cat) use($product_categories_ids){
-            $cat-> whereIn('categories.id',$product_categories_ids);
-        }) -> limit(20) -> latest() -> get();
+        $data['related_products'] = Product::whereHas('categories', function ($cat) use($product_categories_ids){
+            $cat-> whereIn('categories.id', $product_categories_ids);
+        })->limit(20)->latest()->get();
 
         return view('front.products-details', $data);
     }
 
 }
-

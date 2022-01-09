@@ -65,21 +65,35 @@
                                                         <label for="projectinput1">Product Name</label>
                                                         <input type="text" id="name"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=""
                                                                 value="{{old('name')}}"
                                                                 name="name">
                                                         @error("name")
-                                                        <span class="text-danger">{{$message}}</span>
+                                                            <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
+
+{{--                                                <div class="col-md-6">--}}
+{{--                                                    <div class="form-group">--}}
+{{--                                                        <label for="projectinput1">Price</label>--}}
+{{--                                                        <input type="text" id="price"--}}
+{{--                                                               class="form-control"--}}
+{{--                                                               placeholder="  "--}}
+{{--                                                               value="{{old('price')}}"--}}
+{{--                                                               name="price">--}}
+{{--                                                        @error("price")--}}
+{{--                                                        <span class="text-danger">{{$message}}</span>--}}
+{{--                                                        @enderror--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Slug</label>
                                                         <input type="text"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=""
                                                                 value="{{old('slug')}}"
                                                                 name="slug">
                                                         @error("slug")
@@ -140,6 +154,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Choose Tags</label>
@@ -164,7 +179,7 @@
                                                             <optgroup label="Please Choose brand">
                                                                 @if($brands && $brands -> count() > 0)
                                                                     @foreach($brands as $brand)
-                                                                        <option value="{{$brand -> id }}">{{$brand->name}}</option>
+                                                                        <option value="{{ $brand->id }}">{{$brand->name}}</option>
                                                                     @endforeach
                                                                 @endif
                                                             </optgroup>
@@ -192,8 +207,6 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
 
@@ -224,15 +237,15 @@
 
 @section('script')
 
-<script>
-    $('input:radio[name="type"]').change(
-        function(){
-            if (this.checked && this.value == '2') {  // 1 if main cat - 2 if sub cat
-                $('#cats_list').removeClass('hidden');
+    <script>
+        $('input:radio[name="type"]').change(
+            function(){
+                if (this.checked && this.value == '2') {  // 1 if main cat - 2 if sub cat
+                    $('#cats_list').removeClass('hidden');
 
-            }else{
-                $('#cats_list').addClass('hidden');
-            }
-        });
-</script>
+                }else{
+                    $('#cats_list').addClass('hidden');
+                }
+            });
+    </script>
     @stop

@@ -40,9 +40,9 @@ class UsersController extends Controller {
 
         // save the new user data
         if($user->save())
-             return redirect()->route('admin.users.index')->with(['success' => 'تم التحديث بنجاح']);
+             return redirect()->route('admin.users.index')->with(['success' => 'Successfully Updated']);
         else
-            return redirect()->route('admin.users.index')->with(['success' => 'حدث خطا ما']);
+            return redirect()->route('admin.users.index')->with(['success' => 'Something Wrong, Please Try Again']);
 
     }
 }

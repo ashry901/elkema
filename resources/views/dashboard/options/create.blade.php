@@ -64,6 +64,7 @@
                                             </h4>
 
                                             <div class="row">
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Name</label>
@@ -93,9 +94,6 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">Choose Product</label>
@@ -135,7 +133,10 @@
                                                         @enderror
                                                     </div>
                                                 </div>
+                                                
                                             </div>
+
+
                                         </div>
 
                                         <div class="form-actions">

@@ -46,8 +46,10 @@
                                     </ul>
                                 </div>
                             </div>
+
                             @include('dashboard.includes.alerts.success')
                             @include('dashboard.includes.alerts.errors')
+
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <form class="form"
@@ -63,7 +65,7 @@
                                                 <span class="file-custom"></span>
                                             </label>
                                             @error('photo')
-                                            <span class="text-danger">{{$message}}</span>
+                                                <span class="text-danger">{{$message}}</span>
                                             @enderror
                                         </div>
 
@@ -75,7 +77,7 @@
                                                         <label for="projectinput1">Name Category</label>
                                                         <input type="text" id="name"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=""
                                                                 value="{{old('name')}}"
                                                                 name="name">
                                                         @error("name")
@@ -89,7 +91,7 @@
                                                         <label for="projectinput1">Slug</label>
                                                         <input type="text" id="name"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=""
                                                                 value="{{old('slug')}}"
                                                                 name="slug">
                                                         @error("slug")

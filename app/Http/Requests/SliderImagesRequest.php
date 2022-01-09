@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Enumerations\CategoryType;
-use App\Rules\ProductQty;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ProductQty;
 
 class SliderImagesRequest extends FormRequest
 {
@@ -16,9 +15,9 @@ class SliderImagesRequest extends FormRequest
     public function rules()
     {
         return [
-            'document' => 'required|array|min:1',
+            //'photo' => 'required_without:id|mimes:jpg,jpeg,png',
+            'document'   => 'required|array|min:1',
             'document.*' => 'required|string',
         ];
     }
-
 }

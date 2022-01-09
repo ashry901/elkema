@@ -7,7 +7,7 @@
                     <a id="logo" href="{{route('home')}}"
                         title="ElKemma">
                         <img class="scale-with-grid"
-                                src="{{asset('ashry/front/images/marble/Logo1.png')}}"
+                                src="{{asset('ashry/front/images/logo/elkema.png')}}"
                                 alt="ElKemma" />
                     </a>
                 </div>
@@ -141,8 +141,7 @@
                     </a>
                 </div>
 
-
-
+                
                 <!-- Banner area - only for certain pages-->
                 <div class="banner_wrapper">
                     <a href="#" target="_blank">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //use App\Http\Enumerations\CategoryType;
 use App\Http\Requests\MainCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use DB;
 
 class MainCategoriesController extends Controller
@@ -14,6 +15,7 @@ class MainCategoriesController extends Controller
     public function index ()
     {
         $categories = Category::with('_parent')->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
+        //$categories = Category::parent()->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
         return view('dashboard.categories.index', compact('categories'));
     }
 
@@ -91,6 +93,14 @@ class MainCategoriesController extends Controller
             if (!$category)
                 return redirect()->route('admin.maincategories')->with(['error' => __('admin/categories.This Section Does Not Exist')]);
 
+            if ($request->has('photo')) {
+                $fileName = uploadImage('categories', $request->photo);
+                Category::where('id', $id)
+                    ->update([
+                        'photo' => $fileName,
+                    ]);
+            }
+
             if (!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
             else
@@ -106,8 +116,8 @@ class MainCategoriesController extends Controller
 
             DB::commit();
             return redirect()->route('admin.maincategories')->with(['success' => __('admin/categories.Successfully Updated')]);
-        } catch (\Exception $ex) {
 
+        } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->route('admin.maincategories')->with(['error' => __('admin/categories.Something Wrong, Please Try Again')]);
         }
@@ -116,21 +126,21 @@ class MainCategoriesController extends Controller
     public function destroy($id)
     {
         try {
-            DB::beginTransaction();
             //get specific categories and its translations
             $category = Category::orderBy('id', 'DESC')->find($id);
 
             if (!$category)
                 return redirect()->route('admin.maincategories')->with(['error' => 'This Section Does Not Exist']);
 
+            $image = Str::after($category->photo, 'images/categories/');
+            $image = public_path('images/categories/' . $image);
+            unlink($image); //delete from folder
+
             $category->delete();
 
-            DB::commit();
             return redirect()->route('admin.maincategories')->with(['success' => 'Deleted Successfully']);
 
         } catch (\Exception $ex) {
-
-            DB::rollback();
             return redirect()->route('admin.maincategories')->with(['error' => 'Something Wrong, Please Try Again']);
         }
     }

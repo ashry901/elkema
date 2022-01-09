@@ -32,7 +32,7 @@
                     <div class="x_content">
                         <h3>Section Data</h3>
                         <form action="{{route('admin.subcategories.store')}}" method="POST"
-                              enctype="multipart/form-data" class="form-horizontal form-label-left">
+                                enctype="multipart/form-data" class="form-horizontal form-label-left">
                             @csrf
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Image section</label>

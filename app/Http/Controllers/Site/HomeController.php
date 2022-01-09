@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 use App\Models\Slider;
 use App\Models\Category;
+use App\Models\Sliderup;
+use App\Models\Brand;
 
 class HomeController extends Controller
 {
-
     public function home()
     {
         $data=[];
-
         $data['sliders'] = Slider::get(['photo']);
+        $data['sliderups'] = Sliderup::get(['picture']);
 
         $data['categories'] = Category::parent()
             ->select('id', 'slug', 'photo')
@@ -21,7 +23,6 @@ class HomeController extends Controller
                 $q->select('id', 'parent_id', 'slug');
                 $q->with(['childrens' => function ($qq) {
                     $qq->select('id', 'parent_id', 'slug');
-
                     // $qq->with(['childrens' => function($qqq){
                     //     $qqq->select(
                     //         'id',
@@ -31,24 +32,12 @@ class HomeController extends Controller
                     //         'updated_at'
                     //     );
                     // }]);
-
                 }]);
             }])->get();
-
-            //$data['categories'] = Category::get(['photo']);
-
+        //$data['categories'] = Category::get(['photo']);
         return view('front.home', $data);
     }
 
-    public function about()
-    {
-        return view('front.about');
-    }
-
-    public function portfolio()
-    {
-        return view('front.portfolio');
-    }
 
 
 }

@@ -22,4 +22,6 @@ class ProductImagesRequest extends FormRequest
         ];
     }
 
+    
+
 }

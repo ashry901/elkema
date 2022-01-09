@@ -37,4 +37,6 @@ return [
     'Sculpture'         => 'Sculpture',
     'Sliders'           => 'Sliders',
     'Add Sliders'       => 'Add Sliders',
+    'Sliders Down'       => 'Sliders Down',
+    'Sliders Up'       => 'Sliders Up',
 ];

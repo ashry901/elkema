@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Enumerations\CategoryType;
+//use App\Http\Enumerations\CategoryType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductPriceValidation extends FormRequest

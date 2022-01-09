@@ -37,4 +37,6 @@ return [
     'Sculpture'         => 'النحت',
     'Sliders'           => 'سلايدر الرئيسية',
     'Add Sliders'       => 'اضافة سلايدر الرئيسية',
+    'Sliders Down'      => 'سلايدر الاسفل',
+    'Sliders Up'        => 'سلايدر الاعلى',
 ];

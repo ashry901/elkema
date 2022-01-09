@@ -8,6 +8,7 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class Category extends Model
 {
+
     use Translatable;
 
     protected $with = ['translations'];
@@ -60,6 +61,8 @@ class Category extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('ashry/images/categories/' . $val) : "";
+        return ($val !== null) ? asset('images/categories/' . $val) : "";
     }
+
+
 }

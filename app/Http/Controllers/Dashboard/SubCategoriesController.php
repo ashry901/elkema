@@ -23,7 +23,6 @@ class SubCategoriesController extends Controller
         return view('dashboard.subcategories.create',compact('categories'));
     }
 
-
     public function store(SubCategoryRequest $request)
     {
 
@@ -54,11 +53,10 @@ class SubCategoriesController extends Controller
 
     }
 
+    
 
     public function edit($id)
     {
-
-
         //get specific categories and its translations
         $category = Category::orderBy('id', 'DESC')->find($id);
 
@@ -67,8 +65,7 @@ class SubCategoriesController extends Controller
 
         $categories = Category::parent()->orderBy('id','DESC') -> get();
 
-
-        return view('dashboard.subcategories.edit', compact('category','categories'));
+        return view('dashboard.subcategories.edit', compact('category', 'categories'));
 
     }
 
@@ -77,9 +74,7 @@ class SubCategoriesController extends Controller
     {
         try {
             //validation
-
             //update DB
-
 
             $category = Category::find($id);
 

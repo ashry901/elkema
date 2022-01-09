@@ -9,6 +9,7 @@ use App\Http\Requests\MainCategoryRequest;
 use App\Http\Requests\ProductImagesRequest;
 use App\Http\Requests\ProductPriceValidation;
 use App\Http\Requests\ProductStockRequest;
+use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Image;
@@ -44,6 +45,8 @@ class ProductsController extends Controller
         DB::beginTransaction();
 
         //validation
+        //return $request;
+
         if (!$request->has('is_active'))
             $request->request->add(['is_active' => 0]);
         else
@@ -65,6 +68,7 @@ class ProductsController extends Controller
         $product->categories()->attach($request->categories);
 
         //save product tags
+        $product->tags()->attach($request->tags);
 
         DB::commit();
         return redirect()->route('admin.products')->with(['success' => 'Successfully Added']);
@@ -75,9 +79,11 @@ class ProductsController extends Controller
         }
     }
 
+
+
     public function getPrice($product_id)
     {
-        return view('dashboard.products.prices.create')->with('id', $product_id) ;
+        return view('dashboard.products.prices.create') -> with('id', $product_id) ;
     }
 
     public function saveProductPrice(ProductPriceValidation $request)
@@ -87,12 +93,12 @@ class ProductsController extends Controller
             DB::beginTransaction();
 
             Product::whereId($request->product_id)->update($request->only([
-                    'price',
-                    'special_price',
-                    'special_price_type',
-                    'special_price_start',
-                    'special_price_end'
-                ]));
+                'price',
+                'special_price',
+                'special_price_type',
+                'special_price_start',
+                'special_price_end'
+            ]));
 
             DB::commit();
             return redirect()->route('admin.products')->with(['success' => 'Successfully Updated']);
@@ -111,14 +117,14 @@ class ProductsController extends Controller
     public function saveProductStock (ProductStockRequest $request)
     {
         try{
-        //return $request;
-        DB::beginTransaction();
+            //return $request;
+            DB::beginTransaction();
 
-        Product::whereId($request->product_id)
+            Product::whereId($request->product_id)
                 ->update($request->except(['_token', 'product_id']));
 
-        DB::commit();
-        return redirect()->route('admin.products')->with(['success' => 'Successfully Updated']);
+            DB::commit();
+            return redirect()->route('admin.products')->with(['success' => 'Successfully Updated']);
 
         }catch(\Exception $ex){
             DB::rollback();
@@ -176,32 +182,34 @@ class ProductsController extends Controller
         $product = Product::orderBy('id', 'DESC')->find($id);
 
         if (!$product)
-            return redirect()->route('admin.products.edit')->with(['error' => 'This Section Does Not Exist']);
+            return redirect()->route('dashboard.products.general.edit')->with(['error' => 'This Section Does Not Exist']);
 
-        return view('admin.products.edit', compact('product'));
+        return view('dashboard.products.general.edit', compact('product'));
     }
 
-    public function update($id, GeneralProductRequest $request)
+    public function update($id, ProductRequest $request)
     {
-
         try {
             DB::beginTransaction();
-            //validation
-            //update DB
+
             $product = Product::find($id);
 
             if (!$product)
-                return redirect()->route('admin.products')->with(['error' => 'This Section Does Not Exist']);
+                return redirect()->route('admin.products')->with(['error' => 'This Product Does Not Exist']);
 
             if (!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
             else
                 $request->request->add(['is_active' => 1]);
 
-            $product->update($request->all());
+            //$product->update($request->all());
+            //$product->update($request->only(['name', 'description', 'short_description']));
+            $product->update($request->except('_token', 'id'));
 
             //save translations
-            $product->name = $request->name;
+            $product->name              = $request->name;
+            $product->description       = $request->description;
+            $product->short_description = $request->short_description;
             $product->save();
 
             DB::commit();

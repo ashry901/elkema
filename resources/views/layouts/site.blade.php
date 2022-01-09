@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Favicons -->
-    <link href="{{asset('ashry/front/images/favicon.png')}}" rel="shortcut icon">
+    <link href="{{asset('ashry/front/images/logo/elkema-ICO.ico')}}" rel="shortcut icon">
 
     <!-- FONTS -->
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
@@ -29,8 +29,8 @@
 
 {{-- <body class="color-blue layout-full-width header-modern sticky-header sticky-white with_aside aside_right subheader-title-left"> --}}
 
-<body class="color-blue layout-full-width header-modern sticky-header sticky-white subheader-title-left">
-
+{{--<body class="color-blue layout-full-width header-modern sticky-header sticky-white subheader-title-left">--}}
+<body class="color-blue layout-full-width header-modern sticky-header sticky-white">
 
     <!-- Hidden Top Area -->
     @include('front.includes.header-top')
@@ -46,8 +46,7 @@
 
                 <!-- Header bottom -  Logo and Menu area -->
                 @include('front.includes.header-bottom')
-                {{-- @yield('header') --}}
-                {{-- @include('front.includes.subheader') --}}
+
                 <!-- Revolution slider area-->
                 @yield('slider')
             </header>
@@ -184,13 +183,13 @@
     </script>
 
     <script>
-        jQuery(window).load(function () {
+        jQuery(window).load(function() {
             var retina = window.devicePixelRatio > 1 ? true : false;
             if (retina) {
                 var retinaEl = jQuery("#logo img");
                 var retinaLogoW = retinaEl.width();
                 var retinaLogoH = retinaEl.height();
-                retinaEl.attr("src", "ashry/front/images/marble/Logo1.png").width(retinaLogoW).height(retinaLogoH)
+                //retinaEl.attr("src", "ashry/front/images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
             }
         });
     </script>

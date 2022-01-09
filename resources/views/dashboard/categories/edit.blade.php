@@ -68,9 +68,10 @@
 
                                         <div class="form-group">
                                             <div class="text-center">
+                                                {{--    {{$category->photo}}    --}}
                                                 <img
                                                     src="{{$category->photo}}"
-                                                    class="rounded-circle  height-150" alt="Img">
+                                                    class="rounded-circle height-150" alt="Img">
                                             </div>
                                         </div>
 
@@ -107,11 +108,11 @@
                                                         <label for="projectinput1"> Slug</label>
                                                         <input type="text" id="name"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=" "
                                                                 value="{{$category->slug}}"
                                                                 name="slug">
                                                         @error("slug")
-                                                        <span class="text-danger">{{$message}}</span>
+                                                            <span class="text-danger">{{$message}}</span>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -129,7 +130,7 @@
                                                                 class="card-title ml-1">Status  </label>
 
                                                         @error("is_active")
-                                                        <span class="text-danger">{{$message }}</span>
+                                                            <span class="text-danger">{{$message }}</span>
                                                         @enderror
                                                     </div>
                                                 </div>

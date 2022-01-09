@@ -1,9 +1,8 @@
 @extends('layouts.site')
-
 @section('title', 'Home')
 
 @section('slider')
-@include('front.includes.slider')
+    @include('front.includes.slider')
 @stop
 
 @section('content')

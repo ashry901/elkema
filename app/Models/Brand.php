@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
-
+use phpDocumentor\Reflection\Types\Self_;
 
 class Brand extends Model
 {
@@ -12,13 +12,15 @@ class Brand extends Model
 
     protected $with = ['translations'];
 
-    protected $fillable = ['is_active', 'photo'];
+    protected $translatedAttributes = ['name'];
+
+    protected $fillable = ['is_active', 'slug'];
+
+    protected $hidden = ['translations'];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
-
-    public $translatedAttributes = ['name'];
 
     public function scopeActive($query)
     {
@@ -29,6 +31,11 @@ class Brand extends Model
     {
         return $this -> is_active == 0 ? 'Disable' : 'Enabled';
     }
+
+//    public function _brand()
+//    {
+//        return $this->belongsTo(self::class, 'brand_id');
+//    }
 
     public function getPhotoAttribute($val)
     {

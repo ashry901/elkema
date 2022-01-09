@@ -1,14 +1,14 @@
 @extends('layouts.site')
 @section('title', 'portfolio')
 
-@section('slider')
-<div class="banner_wrapper">
+{{--@section('slider')--}}
+{{--<div class="banner_wrapper">--}}
 
-    <img src="{{asset('ashry/front/images/marble/stone-2929.jpg')}}"
-            width="1500" height="260" alt="...">
+{{--    <img src="{{asset('ashry/front/images/marble/stone-2929.jpg')}}"--}}
+{{--            width="1500" height="260" alt="...">--}}
 
-</div>
-@stop
+{{--</div>--}}
+{{--@stop--}}
 
 @section('content')
     <!--Subheader area - only for certain pages -->

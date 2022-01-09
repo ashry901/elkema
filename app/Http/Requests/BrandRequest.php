@@ -14,8 +14,18 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'photo' => 'required_without:id|mimes:jpg,jpeg,png'
+            'name'  => 'required',
+            'slug'  => 'required|unique:brands,slug,'.$this->id,
+            'photo' => 'required_without:id|mimes:jpg,jpeg,png|max:1024'
+        ];
+
+
+    }
+
+    public function messages()
+    {
+        return [
+            //'Marble' => 'Marble',
         ];
     }
 }

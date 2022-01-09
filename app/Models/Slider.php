@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Translatable;
+//use Astrotomic\Translatable\Translatable;
 
 class Slider extends Model
 {
     protected $fillable = [
-        //'is_active',
         'photo',
+        //'is_active',
         'created_at',
-        'updated_at',
-        'updated_at'
+        'created_at'
     ];
+    // protected $fillable = ['is_active', 'photo'];
 
     // protected $casts = [
     //     'is_active' => 'boolean',
@@ -31,6 +31,6 @@ class Slider extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('ashry/images/sliders/' . $val) : "";
+        return ($val !== null) ? asset('images/sliders/' . $val) : "";
     }
 }

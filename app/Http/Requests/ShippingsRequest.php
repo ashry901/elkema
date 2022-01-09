@@ -23,7 +23,9 @@ class ShippingsRequest extends FormRequest
     public function messages()
     {
         return [
-            
+            'value.required' => 'The Name Is Required',
+            //'password.required' => '',
+            //'' => '',
         ];
     }
 }

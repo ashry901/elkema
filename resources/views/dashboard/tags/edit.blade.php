@@ -9,8 +9,15 @@
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.tags')}}">Tags</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{{route('admin.dashboard')}}">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{route('admin.tags')}}">
+                                    Tags</a>
+                                </li>
                             <li class="breadcrumb-item active"> Edit - {{$tag->name}}</li>
                         </ol>
                     </div>

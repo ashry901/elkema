@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Slider')
+@section('title', 'Slider Down')
 @section('content')
 
 <div class="app-content content">
@@ -38,77 +38,69 @@
             <section id="image-gallery" class="card">
                 <div class="card-header">
                     <h4 class="card-title">Image gallery Slider</h4>
-                    <a class="heading-elements-toggle">
-                        <i class="la la-ellipsis-v font-medium-3"></i>
-                    </a>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                        </ul>
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
                     </div>
                 </div>
                 @include('dashboard.includes.alerts.success')
                 @include('dashboard.includes.alerts.errors')
-
                 <div class="card-content">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p>Image gallery grid with photo-swipe integration.</p>
+                        </div>
+                    </div>
+
                     <div class="card-body my-gallery" itemscope itemtype="">
+                        {!! $images->links() !!}
                         <div class="row">
                             <table class="table display nowrap table-striped table-bordered">
                                 <thead class="">
                                     <tr>
-                                        <th>Img Slider</th>
-                                        <th>Action</th>
+                                        {{-- <th style="width: 2%">Num.</th>--}}
+                                        <th style="width: 15%">Img Slider</th>
+                                        <th style="width: 10%">Status</th>
+                                        <th style="width: 30%">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @isset($sliders)
-                                        @foreach($sliders as $slider)
-                                            <tr>
-                                                <td>
-                                                    <img style="width: 100px; height: 75px;"
-                                                            src="{{$slider->photo}}">
-
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group" role="group"
-                                                            aria-label="Basic example">
-                                                        <a href="{{route('admin.sliders.delete', $slider->id)}}"
-                                                            class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
-                                                            Delete
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endisset
+                                @isset($images)
+                                    @foreach ($images as $image)
+                                        <tr>
+                                            {{-- <td>{{$loop->iteration}}</td>--}}
+                                            <td>
+                                                <img style="width: 100px; height: 75px;"
+                                                     src="{{$image->photo}}">
+                                            </td>
+                                            {{-- {{$image->getActive()}}--}}
+                                            <td></td>
+                                            <td>
+                                                <div class="btn-group" role="group"
+                                                        aria-label="Basic example">
+                                                    {{-- {{route('admin.sliderdwons.delete', ['id' => $image->photo])}} --}}
+                                                    <a href="{{route('admin.sliders.images.delete', $image->id)}}"
+                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endisset
                                 </tbody>
                             </table>
-
                             <div class="justify-content-center d-flex"></div>
 
-                            @isset($sliders)
-                                @foreach($sliders as $slider)
-                                    <figure class="col-lg-3 col-md-6 col-12"
-                                            itemprop="associatedMedia">
-                                        <a href="{{$slider->photo}}"
-                                            itemprop="contentUrl"
-                                            data-size="480x360">
-                                            <img class="img-thumbnail img-fluid"
-                                                    src="{{$slider->photo}}"
-                                                    itemprop="thumbnail"
-                                                    alt="Image description" />
-                                        </a>
-                                    </figure>
-                                @endforeach
-                            @endisset
+                            {!! $images->links() !!}
                         </div>
-                        {!! $sliders->links() !!}
                     </div>
                 </div>
+
             </section>
         </div>
     </div>
