@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SliderupTranslation extends Model
+class SubsliderTranslation extends Model
 {
-    protected $fillable = ['description'];
+    protected $fillable = ['title', 'description'];
 
     public $timestamps = false;
 }

@@ -140,21 +140,21 @@ Route::group([
             Route::get('/', 'SliderController@index')->name('admin.sliders');
             Route::get('/create', 'SliderController@addImages')->name('admin.sliders.create');
             Route::post('images', 'SliderController@saveSliderImages')->name('admin.sliders.images.store');
-            Route::post('images/db', 'SliderController@saveSliderImagesDB')->name('admin.sliders.images.store.db');
+            //Route::post('images/db', 'SliderController@saveSliderImagesDB')->name('admin.sliders.images.store.db');
             Route::get('images/{id}','SliderController@delete')->name('admin.sliders.images.delete');
         });
 
         ################################## End Sliders    #######################################
 
-        ################################## Sliders Down   #######################################
+        ################################## Picsliders   #######################################
 
-        Route::group(['prefix' => 'sliderups'], function () {
-            Route::get('/', 'SliderupsController@index')->name('admin.sliderups');
-            Route::get('create', 'SliderupsController@create')->name('admin.sliderups.create');
-            Route::post('store', 'SliderupsController@store')->name('admin.sliderups.store');
-            Route::get('edit/{id}', 'SliderupsController@edit')->name('admin.sliderups.edit');
-            Route::post('update/{id}', 'SliderupsController@update')->name('admin.sliderups.update');
-            Route::get('delete/{id}', 'SliderupsController@destroy')->name('admin.sliderups.delete');
+        Route::group(['prefix' => 'subsliders'], function () {
+            Route::get('/', 'SubslidersController@index')->name('admin.subsliders');
+            Route::get('create', 'SubslidersController@create')->name('admin.subsliders.create');
+            Route::post('store', 'SubslidersController@store')->name('admin.subsliders.store');
+            Route::get('edit/{id}', 'SubslidersController@edit')->name('admin.subsliders.edit');
+            Route::post('update/{id}', 'SubslidersController@update')->name('admin.subsliders.update');
+            Route::get('delete/{id}', 'SubslidersController@destroy')->name('admin.subsliders.delete');
         });
         ################################## End Sliders Down   #######################################
 

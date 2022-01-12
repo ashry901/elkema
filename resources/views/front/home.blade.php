@@ -358,7 +358,7 @@
                                         @isset($sliders)
                                             @foreach($sliders as $slider)
                                                 <li class="content_slider_li_1">
-                                                    <img width="890" height="470"
+                                                    <img width="890" height="200"
                                                         src="{{$slider->photo}}"
                                                         class="scale-with-grid wp-post-image"
                                                         alt="shortcodes_slider_1" />

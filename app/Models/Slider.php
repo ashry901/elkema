@@ -31,6 +31,6 @@ class Slider extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('images/sliders/' . $val) : "";
+        return ($val !== null) ? asset('ashry/images/sliders/' . $val) : "";
     }
 }

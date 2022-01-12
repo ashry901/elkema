@@ -16,7 +16,7 @@ class SliderImagesRequest extends FormRequest
     {
         return [
             //'photo' => 'required_without:id|mimes:jpg,jpeg,png',
-            'document'   => 'required|array|min:1',
+            'document'   => 'required|array|min:1|max:1024',
             'document.*' => 'required|string',
         ];
     }

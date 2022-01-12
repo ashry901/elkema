@@ -68,7 +68,6 @@
 
                                         <div class="form-group">
                                             <div class="text-center">
-                                                {{--    {{$category->photo}}    --}}
                                                 <img
                                                     src="{{$category->photo}}"
                                                     class="rounded-circle height-150" alt="Img">
@@ -78,7 +77,16 @@
                                         <div class="form-group">
                                             <label>Image</label>
                                             <label id="projectinput7" class="file center-block">
-                                                <input type="file" id="file" name="photo">
+
+                                                @if($category->photo)
+                                                    {{-- <img src="{{ $category->photo }}"--}}
+                                                    {{-- class="rounded-circle height-150" alt="Img">--}}
+
+                                                @else
+
+                                                @endif
+                                                    <input type="file" id="file" name="photo" value="{{ $category->photo }}">
+
                                                 <span class="file-custom"></span>
                                             </label>
                                             @error('photo')
@@ -94,7 +102,7 @@
                                                         <label for="projectinput1">Name Category</label>
                                                         <input type="text" id="name"
                                                                 class="form-control"
-                                                                placeholder="  "
+                                                                placeholder=""
                                                                 value="{{$category->name}}"
                                                                 name="name">
                                                         @error("name")

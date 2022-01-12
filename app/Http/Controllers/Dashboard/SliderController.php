@@ -27,38 +27,27 @@ class SliderController extends Controller
 
     public function saveSliderImages(Request $request)
     {
-        $file = $request->file('dzfile');
-        $filename = uploadImage('sliders', $file);
-
-        return response()->json([
-            'name' => $filename,
-            'original_name' => $file->getClientOriginalName(),
-        ]);
-    }
-
-    public function saveSliderImagesDB(SliderImagesRequest $request)
-    {
         try {
-            //return $request;
             DB::beginTransaction();
 
-            // save dropzone images
-            if ($request->has('document') && count($request->document) > 0) {
-                foreach ($request->document as $image) {
-                    Slider::create([
-                        // 'imageable_id' => $event->id, // if u have colmn
-                        // 'imageable_type' => 'App\Models\Event',
-                        'photo' => $image,
-                    ]);
-                }
+        if($request->hasFile("sliders")){
+            $files=$request->file("sliders");
+            foreach($files as $file){
+                $imageName=time().'_'.$file->getClientOriginalName();
+                $request['photo'] = $imageName;
+                $file->move(\base_path("/ashry/images/sliders"), $imageName);
+
+                Slider::create($request->all());
             }
-            DB::commit();
-            return redirect()->back()->with(['success' => 'Successfully Updated']);
+        }
+
+
+        return redirect()->back()->with(['success' => 'Successfully Updated']);
 
         }catch(\Exception $ex){
-            DB::rollback();
-            return redirect()->back()->with(['error' => 'Something Wrong, Please Try Again']);
+            //return redirect()->back()->with(['error' => 'Something Wrong, Please Try Again']);
         }
+
     }
 
     public function delete($id)
@@ -71,7 +60,7 @@ class SliderController extends Controller
                 return redirect()->route('dashboard.sliders.images.create')->with(['error' => 'This Photo Does Not Exist']);
 
             $image = Str::after($images->photo, 'images/sliders/');
-            $image = public_path('images/sliders/' . $image);
+            $image = base_path('ashry/images/sliders/' . $image);
             unlink($image); //delete from folder
 
             $images->delete();

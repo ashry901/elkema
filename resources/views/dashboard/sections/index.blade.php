@@ -77,6 +77,7 @@
                                                         <td>{{$section->getActive()}}</td>
                                                         <td>
                                                             {{-- {{$section->photo}}--}}
+                                                            {{-- {{asset('ashry/images/sections/'.$section->photo)}} --}}
                                                             <img style="width: 100px; height: 75px;"
                                                                  src="{{$section->photo}}">
                                                         </td>

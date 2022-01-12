@@ -74,7 +74,7 @@
                                                         <td>
                                                         {{-- {{asset('images/categories/'.$category->photo)}} --}}
                                                             <img style="width: 100px; height: 75px;"
-                                                                    src="{{asset('public/images/categories/' . $category->photo)}}">
+                                                                    src="{{$category->photo}}">
                                                         </td>
 
                                                         <td>

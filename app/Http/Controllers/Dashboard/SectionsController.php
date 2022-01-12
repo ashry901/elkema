@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Traits\PicTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\SectionRequest;
 use App\Models\Section;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 class SectionsController extends Controller
 {
+    use PicTrait;
+
     public function index ()
     {
         $sections = Section::with('_parent')->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
@@ -34,10 +37,7 @@ class SectionsController extends Controller
             else
                 $request->request->add(['is_active' => 1]);
 
-            $fileName = "";
-            if ($request->has('photo')) {
-                $fileName = uploadImage('sections', $request->photo);
-            }
+            $file_name = $this->saveImage($request->photo , 'ashry/images/sections');
 
             // //if user choose main category then we must remove paret id from the request
 
@@ -53,7 +53,7 @@ class SectionsController extends Controller
             $section->name              = $request->name;
             $section->description       = $request->description;
             $section->short_description = $request->short_description;
-            $section->photo             = $fileName;
+            $section->photo             = $file_name;
             $section->save();
 
             DB::commit();

@@ -18,8 +18,8 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{route('admin.sliderups.create')}}">
-                                    Add Slider
+                                <a href="{{route('admin.subsliders.create')}}">
+                                    Add Sub Slider
                                 </a>
                             </li>
                             <li class="breadcrumb-item active">
@@ -58,55 +58,57 @@
                     </div>
 
                     <div class="card-body my-gallery" itemscope itemtype="">
-                        {!! $sliderups->links() !!}
+                        {!! $subsliders->links() !!}
                         <div class="row">
                             <table class="table display nowrap table-striped table-bordered">
                                 <thead class="">
                                     <tr>
-                                        <th style="width: 2%">Num.</th>
-                                        <th style="width: 45%">Description</th>
-                                        <th style="width: 45%">slug</th>
-                                        <th style="width: 10%">Status</th>
+                                        <th style="width: 3%">Num.</th>
+                                        <th style="width: 12%">Title</th>
+                                        <th style="width: 35%">Description</th>
                                         <th style="width: 15%">Img Slider</th>
-                                        <th style="width: 30%">Action</th>
+                                        <th style="width: 35%">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                @isset($sliderups)
-                                    @foreach ($sliderups as $sliderup)
-                                        <tr>
-                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$sliderup->description}}</td>
-                                            <td>{{$sliderup->slug}}</td>
-                                            <td>
-                                                {{$sliderup->getActive()}}
-                                            </td>
 
+                                @isset($subsliders)
+                                    @foreach ($subsliders as $subslider)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$subslider->title}}</td>
+                                            <td>{{$subslider->description}}</td>
                                             <td>
-                                                {{-- {{asset('ashry/images/sliderups/'.$sliderup->picture)}} --}}
+                                                {{-- {{$subslider->picture}} --}}
+                                                {{-- {{asset('ashry/images/subsliders/'.$subslider->picture)}} --}}
                                                 <img style="width: 100px; height: 75px;"
-                                                     src="{{asset('ashry/images/sliderups/'.$sliderup->picture)}}">
+                                                     src="{{asset('ashry/images/subsliders/'.$subslider->picture)}}">
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group"
                                                         aria-label="Basic example">
+                                                    {{--  {{route('admin.subsliders.edit', $subslider->id)}} --}}
+                                                    <a href="{{route('admin.subsliders.edit', $subslider->id)}}"
+                                                         class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                        Edit
+                                                    </a>
 
-                                                    <a href="{{route('admin.sliderups.edit', $sliderup->id)}}"
-                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
-
-                                                    <a href="{{route('admin.sliderups.delete', $sliderup->id)}}"
-                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+                                                    <a href="{{route('admin.subsliders.delete', $subslider->id)}}"
+                                                          class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                        Delete
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @endisset
+
                                 </tbody>
                             </table>
                             <div class="justify-content-center d-flex"></div>
 
-                            {!! $sliderups->links() !!}
+                            {!! $subsliders->links() !!}
                         </div>
                     </div>
                 </div>

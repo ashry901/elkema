@@ -61,7 +61,7 @@ class Category extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('images/categories/' . $val) : "";
+        return ($val !== null) ? asset('ashry/images/categories/' . $val) : "";
     }
 
 

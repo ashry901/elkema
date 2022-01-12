@@ -50,7 +50,7 @@
                                         <div class="col-lg-12">
                                             {{-- {{route('admin.sliders.images.store.db')}} --}}
                                             <form class="form"
-                                                  action="{{route('admin.sliders.images.store.db')}}"
+                                                  action="{{route('admin.sliders.images.store')}}"
                                                   method="POST"
                                                   enctype="multipart/form-data">
                                                 @csrf
@@ -61,6 +61,12 @@
                                                         <i class="ft-home"></i>
                                                         Image Sliders
                                                     </h4>
+                                                    <label class="m-2">Sliders</label>
+                                                    <input type="file"
+                                                           id="input-file-now-custom-3"
+                                                           class="form-control m-2"
+                                                           name="sliders[]" multiple>
+                                                    {{--
                                                     <div class="form-group">
                                                         <div id="dpz-multiple-files"
                                                              class="dropzone dropzone-area">
@@ -70,6 +76,7 @@
                                                         </div>
                                                         <br><br>
                                                     </div>
+                                                    --}}
                                                 </div>
 
                                                 <div class="form-actions">
@@ -163,65 +170,4 @@
 
 @stop
 
-@section('script')
 
-    <script>
-
-        var uploadedDocumentMap = {}
-
-        Dropzone.options.dpzMultipleFiles = {
-            paramName: "dzfile", // The name that will be used to transfer the file
-            //autoProcessQueue: false,
-            maxFilesize: 5, // MB
-            clickable: true,
-            addRemoveLinks: true,
-            acceptedFiles: 'image/*',
-            dictFallbackMessage: "Your browser does not support multiple images, drag and drop",
-            dictInvalidFileType: "You cannot upload this type of file",
-            dictCancelUpload: "Cancel the upload",
-            dictCancelUploadConfirmation: "Are you sure to cancel uploading files?",
-            dictRemoveFile: "Delete Img",
-            dictMaxFilesExceeded: "You cannot upload more than one image",
-            headers: {
-                'X-CSRF-TOKEN':
-                    "{{ csrf_token() }}"
-            }
-
-            ,
-            url: "{{ route('admin.sliders.images.store') }}", // Set the url
-            success:
-                function (file, response) {
-                    $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-                    uploadedDocumentMap[file.name] = response.name
-                }
-            ,
-            removedfile: function (file) {
-                file.previewElement.remove()
-                var name = ''
-                if (typeof file.file_name !== 'undefined') {
-                    name = file.file_name
-                } else {
-                    name = uploadedDocumentMap[file.name]
-                }
-                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
-            }
-            ,
-            // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
-            init: function () {
-
-                    @if(isset($event) && $event->document)
-                var files =
-                {!! json_encode($event->document) !!}
-                    for (var i in files) {
-                    var file = files[i]
-                    this.options.addedfile.call(this, file)
-                    file.previewElement.classList.add('dz-complete')
-                    $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
-                }
-                @endif
-            }
-        }
-
-    </script>
-
-@stop

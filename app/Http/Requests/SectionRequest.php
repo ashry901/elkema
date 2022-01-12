@@ -18,7 +18,7 @@ class SectionRequest extends FormRequest
             'description'       => 'required|max:1000',
             'short_description' => 'nullable|max:500',
             'slug'              => 'required|unique:categories,slug,'.$this->id,
-            'photo'             => 'required_without:id|mimes:jpg,jpeg,png'
+            'photo'             => 'required_without:id|mimes:jpg,jpeg,png|max:1024'
         ];
     }
 }

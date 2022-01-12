@@ -12,6 +12,7 @@ use App\Models\Category;
 use DB;
 use Illuminate\Support\Str;
 
+
 class BrandsController extends Controller
 {
     use PicTrait;
@@ -26,15 +27,14 @@ class BrandsController extends Controller
     {
         $brands = Brand::select('id')->get();
         return view('dashboard.brands.create', compact('brands'));
-        //return view('dashboard.brands.create');
     }
+
 
     public function store(BrandRequest $request)
     {
         try {
             DB::beginTransaction();
 
-            //validation
             if (!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
             else
@@ -58,43 +58,8 @@ class BrandsController extends Controller
         }
     }
 
-
-
-//    public function store(BrandRequest $request)
-//    {
-//        try {
-//            DB::beginTransaction();
-//
-//            //validation
-//            if (!$request->has('is_active'))
-//                $request->request->add(['is_active' => 0]);
-//            else
-//                $request->request->add(['is_active' => 1]);
-//
-//            $fileName = "";
-//            if ($request->has('photo')) {
-//                $fileName = uploadImage('brands', $request->photo);
-//            }
-//
-//            $brand = Brand::create($request->except('_token', 'photo'));
-//
-//            // save translations
-//            $brand->name = $request->name;
-//            $brand->photo = $fileName;
-//            $brand->save();
-//
-//            DB::commit();
-//            return redirect()->route('admin.brands')->with(['success' => 'Added Successfully']);
-//
-//        } catch (\Exception $ex) {
-//            DB::rollback();
-//            return redirect()->route('admin.brands')->with(['error' => 'Something Wrong, Please Try Again']);
-//        }
-//    }
-
     public function edit($id)
     {
-        //get specific categories and its translations
         $brand = Brand::find($id);
 
         if (!$brand)
@@ -103,27 +68,25 @@ class BrandsController extends Controller
         return view('dashboard.brands.edit', compact('brand'));
     }
 
+
     public function update($id, BrandRequest $request)
     {
         try {
-            //validation
-            //update DB
+
             $brand = Brand::find($id);
 
             if (!$brand)
                 return redirect()->route('admin.brands')->with(['error' => 'This Brand Does Not Exist']);
 
+            $image = Str::after($brand->photo, 'ashry/images/brands/');
+            $image = base_path('ashry/images/brands/' . $image);
+            unlink($image); //delete from folder
 
             DB::beginTransaction();
 
-            //$file_name = $this->saveImage($request->photo, 'ashry/images/brands');
-
             if ($request->has('photo')) {
                 $file_name = $this->saveImage($request->photo, 'ashry/images/brands');
-                Brand::where('id', $id)
-                    ->update([
-                        'photo' => $file_name,
-                    ]);
+                Brand::where('id', $id)->update(['photo' => $file_name]);
             }
 
             if (!$request->has('is_active'))
@@ -152,7 +115,6 @@ class BrandsController extends Controller
         try {
             DB::beginTransaction();
 
-            //get specific categories and its translations
             $brand = Brand::find($id);
 
             if (!$brand)

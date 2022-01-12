@@ -39,4 +39,5 @@ return [
     'Add Sliders'       => 'اضافة سلايدر الرئيسية',
     'Sliders Down'      => 'سلايدر الاسفل',
     'Sliders Up'        => 'سلايدر الاعلى',
+    'Sub Sliders'       => 'سلايدر الفرعى',
 ];

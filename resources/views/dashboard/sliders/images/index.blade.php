@@ -63,9 +63,9 @@
                             <table class="table display nowrap table-striped table-bordered">
                                 <thead class="">
                                     <tr>
-                                        {{-- <th style="width: 2%">Num.</th>--}}
+                                         <th style="width: 3%">Num.</th>
                                         <th style="width: 15%">Img Slider</th>
-                                        <th style="width: 10%">Status</th>
+
                                         <th style="width: 30%">Action</th>
                                     </tr>
                                 </thead>
@@ -74,13 +74,11 @@
                                 @isset($images)
                                     @foreach ($images as $image)
                                         <tr>
-                                            {{-- <td>{{$loop->iteration}}</td>--}}
+                                             <td>{{$loop->iteration}}</td>
                                             <td>
                                                 <img style="width: 100px; height: 75px;"
                                                      src="{{$image->photo}}">
                                             </td>
-                                            {{-- {{$image->getActive()}}--}}
-                                            <td></td>
                                             <td>
                                                 <div class="btn-group" role="group"
                                                         aria-label="Basic example">

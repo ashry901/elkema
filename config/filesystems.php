@@ -57,7 +57,7 @@ return [
 
         'categories' => [
             'driver' => 'local',
-            'root' => public_path('images/categories'),
+            'root' => base_path('ashry/images/categories'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -71,21 +71,28 @@ return [
 
         'products' => [
             'driver' => 'local',
-            'root' => public_path('images/products'),
+            'root' => base_path('ashry/images/products'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'sections' => [
+            'driver' => 'local',
+            'root' => base_path('ashry/images/sections'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
         'sliders' => [
             'driver' => 'local',
-            'root' => public_path('images/sliders'),
+            'root' => base_path('ashry/images/sliders'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 
-        'sliderups' => [
+        'subsliders' => [
             'driver' => 'local',
-            'root' => public_path('images/sliderups'),
+            'root' => base_path('ashry/images/subsliders'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

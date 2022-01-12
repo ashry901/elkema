@@ -43,7 +43,6 @@ class OptionsController extends Controller
     {
         $data = [];
         $data['products'] = Product::active()->select('id')->get();
-
         $data['attributes'] = Attribute::select('id')->get();
 
         return view('dashboard.options.create', $data);

@@ -60,6 +60,6 @@ class Section extends Model
 
     public function getPhotoAttribute($val)
     {
-        return ($val !== null) ? asset('images/sections/' . $val) : "";
+        return ($val !== null) ? asset('ashry/images/sections/' . $val) : "";
     }
 }

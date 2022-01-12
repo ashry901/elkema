@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Traits\PicTrait;
 use Illuminate\Http\Request;
 //use App\Http\Enumerations\CategoryType;
 use App\Http\Requests\MainCategoryRequest;
@@ -12,6 +13,8 @@ use DB;
 
 class MainCategoriesController extends Controller
 {
+    use PicTrait;
+
     public function index ()
     {
         $categories = Category::with('_parent')->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
@@ -36,29 +39,20 @@ class MainCategoriesController extends Controller
             else
                 $request->request->add(['is_active' => 1]);
 
-            $fileName = "";
-            if ($request->has('photo')) {
-                $fileName = uploadImage('categories', $request->photo);
-            }
+            $file_name = $this->saveImage($request->photo , 'ashry/images/categories');
 
             // //if user choose main category then we must remove paret id from the request
-
             if($request -> type == 1) //main category
             {
                 $request->request->add(['parent_id' => null]);
             }
-
-            // if($request -> type == CategoryType::mainCategory) //main category
-            // {
-            //     $request->request->add(['parent_id' => null]);
-            // }
 
             //if he choose child category we must add parent id
             $category = Category::create($request->except('_token', 'photo'));
 
             //save translations
             $category->name = $request->name;
-            $category->photo = $fileName;
+            $category->photo = $file_name;
             $category->save();
 
             DB::commit();
@@ -86,20 +80,21 @@ class MainCategoriesController extends Controller
     {
         try {
             DB::beginTransaction();
-            //validation
-            //update DB
+
             $category = Category::find($id);
 
             if (!$category)
                 return redirect()->route('admin.maincategories')->with(['error' => __('admin/categories.This Section Does Not Exist')]);
 
+
             if ($request->has('photo')) {
-                $fileName = uploadImage('categories', $request->photo);
-                Category::where('id', $id)
-                    ->update([
-                        'photo' => $fileName,
-                    ]);
+                $file_name = $this->saveImage($request->photo, 'ashry/images/categories');
+                Category::where('id', $id)->update(['photo' => $file_name]);
             }
+
+            $image = Str::after($category->photo, 'ashry/images/categories/');
+            $image = base_path('ashry/images/categories/' . $image);
+            unlink($image); //delete from folder
 
             if (!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
@@ -132,8 +127,8 @@ class MainCategoriesController extends Controller
             if (!$category)
                 return redirect()->route('admin.maincategories')->with(['error' => 'This Section Does Not Exist']);
 
-            $image = Str::after($category->photo, 'images/categories/');
-            $image = public_path('images/categories/' . $image);
+            $image = Str::after($category->photo, 'ashry/images/categories/');
+            $image = base_path('ashry/images/categories/' . $image);
             unlink($image); //delete from folder
 
             $category->delete();

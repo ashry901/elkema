@@ -68,6 +68,7 @@
 
                                             <div class="form-group">
                                                 <div class="text-center">
+                                                    {{-- {{asset('ashry/images/sections/'.$section->photo)}} --}}
                                                     <img
                                                         src="{{$section->photo}}"
                                                         class="rounded-circle  height-150" alt="Img">

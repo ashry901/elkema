@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Section;
 use App\Models\Slider;
 use App\Models\Category;
-use App\Models\Sliderup;
+use App\Models\Subslider;
 use App\Models\Brand;
 
 class HomeController extends Controller
@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data=[];
         $data['sliders'] = Slider::get(['photo']);
-        $data['sliderups'] = Sliderup::get(['picture']);
+        $data['subsliders'] = Subslider::get(['picture']);
 
         $data['categories'] = Category::parent()
             ->select('id', 'slug', 'photo')

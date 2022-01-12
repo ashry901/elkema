@@ -17,11 +17,11 @@ class ProductImagesRequest extends FormRequest
     {
         return [
             'product_id' => 'required|exists:products,id',
-            'document'   => 'required|array|min:1',
+            'document'   => 'required|array|min:1|max:1024',
             'document.*' => 'required|string',
         ];
     }
 
-    
+
 
 }

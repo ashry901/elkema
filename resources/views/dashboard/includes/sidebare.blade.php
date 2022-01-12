@@ -156,13 +156,13 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{route('admin.sliderups')}}">
+                <a href="{{route('admin.subsliders')}}">
                     <i class="ft-align-justify"></i>
                     <span class="menu-title" data-i18n="Dashboard">
-                        {{__('admin/sidebar.Sliders Up')}}
+                        {{__('admin/sidebar.Sub Sliders')}}
                     </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">
-                        {{\App\Models\Sliderup::count()}}
+                        {{\App\Models\Subslider::count()}}
                     </span>
                 </a>
             </li>

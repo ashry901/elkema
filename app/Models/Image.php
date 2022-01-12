@@ -16,6 +16,6 @@ class Image extends Model
 
     public function getPhotoAttribute($val)
     {
-        return $val ? asset('images/products/'.$val) : '';
+        return $val ? asset('ashry/images/products/'.$val) : '';
     }
 }

@@ -56,6 +56,7 @@
                                         <table class="table display nowrap table-striped table-bordered">
                                             <thead class="">
                                             <tr>
+                                                <th style="width: 3%">Num.</th>
                                                 <th>Name</th>
                                                 <th>Slug</th>
                                                 <th>Status</th>
@@ -68,12 +69,11 @@
                                             @isset($brands)
                                                 @foreach($brands as $brand)
                                                     <tr>
+                                                        <td>{{$loop->iteration}}</td>
                                                         <td>{{$brand->name}}</td>
                                                         <td>{{$brand->slug}}</td>
                                                         <td>{{$brand->getActive()}}</td>
                                                         <td>
-
-                                                        {{--   {{ public_path($brand->photo) }}    --}}
                                                             <img style="width: 100px; height: 75px;"
                                                                  src="{{$brand->photo}}">
                                                             {{-- {{asset('ashry/images/brands' . $brand->photo)}} --}}
