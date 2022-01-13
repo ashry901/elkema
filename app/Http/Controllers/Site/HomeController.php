@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data=[];
         $data['sliders'] = Slider::get(['photo']);
-        $data['subsliders'] = Subslider::get(['picture']);
+        $data['subsliders'] = Subslider::get(['picture', 'id']);
 
         $data['categories'] = Category::parent()
             ->select('id', 'slug', 'photo')

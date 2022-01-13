@@ -180,6 +180,19 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{route('admin.abouts')}}">
+                    <i class="ft-align-justify"></i>
+                    <span class="menu-title" data-i18n="Dashboard">
+                        {{__('admin/sidebar.About')}}
+                    </span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">
+                        {{\App\Models\About::count()}}
+                    </span>
+                </a>
+            </li>
+
+        {{--
+            <li class="nav-item">
                 <a href="#">
                     <i class="la la-cog"></i>
                     <span class="menu-title" data-i18n="nav.templates.main">
@@ -214,7 +227,7 @@
                     </li>
                 </ul>
             </li>
-
+        --}}
 
 
         </ul>

@@ -10,7 +10,7 @@ Route::group([
     Route::group(['namespace' => 'Site', 'middleware' => 'guest'], function () {
         //guest  user
 //        Route::get('fat','PaymentController@fatoorah');
-        Route::get('/', 'HomeController@home')->name('home')->middleware('VerifiedUser');
+        Route::get('/', 'HomeController@home')->name('home');
         Route::get('category/{slug}', 'CategoryController@productsBySlug')->name('category');
         Route::get('product/{slug}', 'ProductController@productsBySlug')->name('product.details');
         Route::get('about', 'OurprojectsController@about')->name('about');

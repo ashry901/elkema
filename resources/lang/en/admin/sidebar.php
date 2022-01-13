@@ -40,4 +40,5 @@ return [
     'Sliders Down'      => 'Sliders Down',
     'Sliders Up'        => 'Sliders Up',
     'Sub Sliders'       => 'Sub Sliders',
+    'About'             => 'About',
 ];

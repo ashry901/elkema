@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2022 at 12:03 AM
+-- Generation Time: Jan 13, 2022 at 05:26 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -20,6 +20,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `seven-noauth`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `abouts`
+--
+
+CREATE TABLE `abouts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `abouts`
+--
+
+INSERT INTO `abouts` (`id`, `is_active`, `slug`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 1, 'sculpture-sculpture-carving', '1642090630.jpg', '2022-01-13 14:17:11', '2022-01-13 14:17:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about_translations`
+--
+
+CREATE TABLE `about_translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `about_id` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `short_dis` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `long_dis` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `about_translations`
+--
+
+INSERT INTO `about_translations` (`id`, `about_id`, `locale`, `title`, `short_dis`, `long_dis`) VALUES
+(1, 1, 'en', 'Column Carving', 'Column Carving Granite Egyptian', 'Column Carving Granite Egyptian Sculpture Statues Granite Imported');
 
 -- --------------------------------------------------------
 
@@ -139,7 +183,8 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `is_active`, `slug`, `photo`, `created_at`, `updated_at`) VALUES
-(64, 1, 'red-egyptian', '1641849689.jpg', '2022-01-10 19:21:29', '2022-01-10 19:21:30');
+(64, 1, 'red-egyptian', '1641849689.jpg', '2022-01-10 19:21:29', '2022-01-10 19:21:30'),
+(66, 1, 'company-gray', '1642067664.jpg', '2022-01-13 07:53:48', '2022-01-13 07:54:24');
 
 -- --------------------------------------------------------
 
@@ -159,7 +204,9 @@ CREATE TABLE `brand_translations` (
 --
 
 INSERT INTO `brand_translations` (`id`, `brand_id`, `locale`, `name`) VALUES
-(84, 64, 'en', 'Red Egyptian');
+(84, 64, 'en', 'Red Egyptian'),
+(86, 66, 'en', 'Company Gray'),
+(87, 66, 'ar', 'رمادى الشركة');
 
 -- --------------------------------------------------------
 
@@ -184,7 +231,8 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `parent_id`, `slug`, `is_active`, `photo`, `created_at`, `updated_at`) VALUES
 (24, NULL, 'marble-marble', 1, '1641900285.jpg', '2022-01-10 20:16:41', '2022-01-11 09:24:45'),
 (26, NULL, 'granite-granite', 1, '1641899821.jpg', '2022-01-11 09:15:58', '2022-01-11 09:17:01'),
-(27, NULL, 'carving-carving', 1, '1641900411.jpg', '2022-01-11 09:26:15', '2022-01-11 09:26:51');
+(27, NULL, 'carving-carving', 1, '1642080379.jpg', '2022-01-11 09:26:15', '2022-01-13 11:26:19'),
+(28, NULL, 'our-projects', 1, '1642067516.jpg', '2022-01-13 07:50:51', '2022-01-13 07:51:56');
 
 -- --------------------------------------------------------
 
@@ -209,7 +257,9 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `name`) VALU
 (36, 26, 'ar', 'جرانيت'),
 (37, 24, 'ar', 'الرخام'),
 (38, 27, 'en', 'Carving'),
-(39, 27, 'ar', 'النحت');
+(39, 27, 'ar', 'النحت'),
+(40, 28, 'en', 'Our Projects'),
+(41, 28, 'ar', 'مشروعاتنا');
 
 -- --------------------------------------------------------
 
@@ -239,6 +289,13 @@ CREATE TABLE `images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `product_id`, `photo`, `created_at`, `updated_at`) VALUES
+(20, 46, 'HsKJZ8nYLGM6stz1VCTDL2rT6g7WqhktQYVPdSQZ.jpg', '2022-01-13 08:00:56', '2022-01-13 08:00:56');
 
 -- --------------------------------------------------------
 
@@ -292,7 +349,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (37, '2022_01_03_193407_create_sliderup_translations_table', 18),
 (38, '2017_05_30_155126416338_create_product_translations_table', 19),
 (42, '2022_01_12_161624_create_subsliders_table', 21),
-(45, '2022_01_12_161635_create_subslider_translations_table', 22);
+(45, '2022_01_12_161635_create_subslider_translations_table', 22),
+(47, '2022_01_13_140026_create_abouts_table', 23),
+(48, '2022_01_13_140108_create_about_translations_table', 23);
 
 -- --------------------------------------------------------
 
@@ -577,7 +636,7 @@ CREATE TABLE `subsliders` (
 
 INSERT INTO `subsliders` (`id`, `picture`, `created_at`, `updated_at`) VALUES
 (6, '1642025954.jpg', '2022-01-12 20:19:14', '2022-01-12 20:19:14'),
-(8, '1642026298.jpg', '2022-01-12 20:24:58', '2022-01-12 20:24:58');
+(8, '1642067810.jpg', '2022-01-13 07:56:50', '2022-01-13 07:56:50');
 
 -- --------------------------------------------------------
 
@@ -600,8 +659,8 @@ CREATE TABLE `subslider_translations` (
 INSERT INTO `subslider_translations` (`id`, `subslider_id`, `locale`, `title`, `description`) VALUES
 (4, 6, 'en', 'Mahmoud Khalil Museum', 'During the restoration of the Mahmoud Khalil Museum'),
 (5, 6, 'ar', 'متحف محمود خليل', 'اثناء ترميم متحف محمود خليل'),
-(6, 7, 'en', 'Albaron Museum', 'During the restoration of the Baron Palace'),
-(7, 8, 'en', 'Baron Palace', 'During the restoration of the Baron Palace');
+(7, 8, 'en', 'Baron Palace', 'During the restoration of the Baron Palace'),
+(8, 8, 'ar', 'قصر البارون', 'اثناء ترميم قصر البارون');
 
 -- --------------------------------------------------------
 
@@ -623,7 +682,8 @@ CREATE TABLE `tags` (
 INSERT INTO `tags` (`id`, `slug`, `created_at`, `updated_at`) VALUES
 (2, 'tag-granite-granite', '2022-01-07 10:23:33', '2022-01-07 10:23:33'),
 (3, 'tag-marble-marble', '2022-01-07 10:24:58', '2022-01-07 10:24:58'),
-(4, 'tag-sculpture-sculpture', '2022-01-07 10:26:47', '2022-01-07 10:26:47');
+(4, 'tag-sculpture-sculpture', '2022-01-07 10:26:47', '2022-01-07 10:26:47'),
+(5, 'our-projects-tag', '2022-01-13 07:55:12', '2022-01-13 07:55:12');
 
 -- --------------------------------------------------------
 
@@ -648,7 +708,8 @@ INSERT INTO `tag_translations` (`id`, `tag_id`, `locale`, `name`) VALUES
 (4, 3, 'en', 'Marble'),
 (5, 3, 'ar', 'الرخام'),
 (6, 4, 'en', 'Sculpture'),
-(7, 4, 'ar', 'النحت');
+(7, 4, 'ar', 'النحت'),
+(8, 5, 'en', 'Our Projects');
 
 -- --------------------------------------------------------
 
@@ -700,6 +761,20 @@ CREATE TABLE `user_verfications` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `abouts`
+--
+ALTER TABLE `abouts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `abouts_slug_unique` (`slug`);
+
+--
+-- Indexes for table `about_translations`
+--
+ALTER TABLE `about_translations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `about_translations_about_id_locale_unique` (`about_id`,`locale`);
 
 --
 -- Indexes for table `admins`
@@ -911,6 +986,18 @@ ALTER TABLE `user_verfications`
 --
 
 --
+-- AUTO_INCREMENT for table `abouts`
+--
+ALTER TABLE `abouts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `about_translations`
+--
+ALTER TABLE `about_translations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
@@ -932,25 +1019,25 @@ ALTER TABLE `attribute_translations`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `brand_translations`
 --
 ALTER TABLE `brand_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `category_translations`
 --
 ALTER TABLE `category_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -962,13 +1049,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `options`
@@ -1040,19 +1127,19 @@ ALTER TABLE `subsliders`
 -- AUTO_INCREMENT for table `subslider_translations`
 --
 ALTER TABLE `subslider_translations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tag_translations`
 --
 ALTER TABLE `tag_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -1075,6 +1162,12 @@ ALTER TABLE `user_verfications`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `about_translations`
+--
+ALTER TABLE `about_translations`
+  ADD CONSTRAINT `about_translations_about_id_foreign` FOREIGN KEY (`about_id`) REFERENCES `abouts` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `brand_translations`

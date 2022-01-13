@@ -42,6 +42,17 @@ Route::group([
 
         ################################## End Categories    #######################################
 
+        ################################## About Routes    #######################################
+        Route::group(['prefix' => 'abouts'], function () {
+            Route::get('/', 'AboutsController@index')->name('admin.abouts');
+            Route::get('create', 'AboutsController@create')->name('admin.abouts.create');
+            Route::post('store', 'AboutsController@store')->name('admin.abouts.store');
+            Route::get('edit/{id}', 'AboutsController@edit')->name('admin.abouts.edit');
+            Route::post('update/{id}', 'AboutsController@update')->name('admin.abouts.update');
+            Route::get('delete/{id}', 'AboutsController@destroy')->name('admin.abouts.delete');
+        });
+        ################################## End About    #######################################
+
         ################################## Sub Categories Routes ######################################
 
         // Route::group(['prefix' => 'sub_categories'], function () {

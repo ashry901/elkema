@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'abouts' => [
+            'driver' => 'local',
+            'root' => base_path('ashry/images/abouts'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         'categories' => [
             'driver' => 'local',
             'root' => base_path('ashry/images/categories'),

@@ -13,10 +13,10 @@
 /*
 |--------------------------------------------------------------------------
 |  1.0 woocommerce
-|  
+|
 |--------------------------------------------------------------------------
 |
-| 
+|
 |
 */
 @-moz-keyframes spin {
@@ -3130,10 +3130,10 @@ h3#ship-to-different-address label {
 /*
 |--------------------------------------------------------------------------
 |  2.0 woocommerce-layout
-|  
+|
 |--------------------------------------------------------------------------
 |
-| 
+|
 |
 */
 .clear {
@@ -3531,10 +3531,10 @@ h3#ship-to-different-address label {
 /*
 |--------------------------------------------------------------------------
 |  3.0 Demo Styles
-|  
+|
 |--------------------------------------------------------------------------
 |
-| 
+|
 |
 */
 body.contact #Content,body.content_no_padding #Content {
@@ -3542,7 +3542,7 @@ body.contact #Content,body.content_no_padding #Content {
 }
 
 /* ------------------------------------------- *
- * font awesome 
+ * font awesome
  * ------------------------------------------- */
 .the-icons.span3 {
     float: left;
@@ -4197,7 +4197,7 @@ img {
     padding-top: 60px;
     padding-bottom: 140px;
     background-color: #082233;
-    background-image: url(../images/section_macbook_sideview.png);
+    /*background-image: url(../images/section_macbook_sideview.png);*/
     background-repeat: no-repeat;
     background-position: center bottom;
 }
@@ -4237,7 +4237,7 @@ img {
     padding-top: 50px;
     padding-bottom: 220px;
     background-color: #f0f0f0;
-    background-image: url(../images/section_home_counters.jpg);
+    /*background-image: url(../images/section_home_counters.jpg);*/
     background-repeat: no-repeat;
     background-position: center bottom;
 }

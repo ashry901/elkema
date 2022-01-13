@@ -40,4 +40,5 @@ return [
     'Sliders Down'      => 'سلايدر الاسفل',
     'Sliders Up'        => 'سلايدر الاعلى',
     'Sub Sliders'       => 'سلايدر الفرعى',
+    'About'             => 'عنا',
 ];

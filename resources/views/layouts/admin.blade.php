@@ -59,7 +59,9 @@
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('ashry/backend/assets/css/style.css')}}">
 <!-- END Custom CSS-->
-@notify_css
+
+{{--@notify_css--}}
+
 @yield('style')
 <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 

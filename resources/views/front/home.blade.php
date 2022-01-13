@@ -99,10 +99,12 @@
                     </div>
                 </div>
 
-                <div class="section flv_sections_5">
+                <div class="section flv_sections_5"
+                     style="background-image: url('{{asset('ashry/front/images/Spanish.jpg')}}'); height: 100%">
 
                     <div class="section_wrapper clearfix">
-                        {{-- <img src="{{asset('ashry/front/images/marble/banner-171.jpg')}}" alt="..."> --}}
+                        {{-- <img src="{{asset('ashry/front/images/marble/FantasyRed.jpg')}}" alt="..."> --}}
+
                         <div class="items_group clearfix">
                             <!-- Page Title-->
 
@@ -333,7 +335,7 @@
                             <div class="column one-fourth column_column">
                                 <div class="column_attr animate" data-anim-type="zoomIn">
                                     <div class="aligncenter">
-                                        <img src="{{asset('ashry/front/images/walkway-35.jpg')}}"
+                                        <img src="{{asset('ashry/front/images/IMG-210.jpg')}}"
                                                 alt="...">
                                     </div>
                                 </div>
@@ -343,7 +345,7 @@
                             <div class="column one-fourth column_column">
                                 <div class="column_attr animate" data-anim-type="zoomIn">
                                     <div class="aligncenter">
-                                        <img src="{{asset('ashry/front/images/taj-mahal.jpg')}}"
+                                        <img src="{{asset('ashry/front/images/IMG-702.jpg')}}"
                                                 alt="...">
                                     </div>
                                 </div>
@@ -423,13 +425,13 @@
                             <!-- One full width row-->
                             <div class="column one column_offer">
                                 <div class="offer">
-                                    @isset($sliders)
+                                    @isset($subsliders)
                                     <ul class="offer_ul">
-                                        @foreach($sliders as $slider)
+                                        @foreach($subsliders as $subslider)
                                         <li class="offer_li">
                                             <div class="image_wrapper">
-                                                <img width="952" height="537"
-                                                    src="{{$slider->photo}}"
+                                                <img width="800" height="537"
+                                                    src="{{asset('ashry/images/subsliders/'.$subslider->picture)}}"
                                                     class="scale-with-grid wp-post-image"
                                                     alt="be-photo" />
                                             </div>
@@ -441,7 +443,7 @@
                                                         </span>
                                                         {{__('site/mainhome.Photo')}}
                                                     </h3>
-
+                                                    {{--
                                                     <a href="#" class="button button_js">
                                                         <span class="button_icon">
                                                             <i class="icon-layout"></i>
@@ -450,15 +452,22 @@
                                                             {{__('site/mainhome.View Demo')}}
                                                         </span>
                                                     </a>
+                                                    --}}
                                                 </div>
 
                                                 <div class="desc">
+                                                    <h5>
+                                                        {{$subslider->title}}
+                                                    </h5>
                                                     <p>
                                                         <span class="big">
+                                                            {{$subslider->description}}
+                                                            {{--
                                                             {{__('site/mainhome.We have created 900+ layouts that')}}
                                                             {{__('site/mainhome.perfectly fit to your type of business.')}}
                                                             {{__('site/mainhome.Choose your product for transportation')}}
                                                             {{__('site/mainhome.and installation anywhere.')}}
+                                                            --}}
                                                         </span>
                                                     </p>
 
@@ -483,7 +492,6 @@
                                                         <div class="icon">
                                                             <i class="icon-lamp"></i>
                                                         </div>
-
                                                         <div class="desc">
                                                             {{__('site/mainhome.We Recommend This Version For Business')}}
                                                             {{__('site/mainhome.Related With Photos Or Images, Like')}}:
@@ -497,6 +505,7 @@
                                                             {{__('site/mainhome.And Other.')}}
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
 
@@ -509,6 +518,8 @@
                         </div>
                     </div>
                 </div>
+
+                <br><br>
 
                 <div class="section dark flv_sections_2">
                     <div class="section_wrapper clearfix">
@@ -558,7 +569,10 @@
                     </div>
                 </div>
 
-                <div class="section dark flv_section">
+                <br><br>
+
+                <div class="section"
+                     style="background-image: url('{{asset('ashry/front/images/Spanish.jpg')}}');">
                     <div class="section_wrapper clearfix">
                         <div class="items_group clearfix">
                             <!-- Page Title-->
@@ -766,6 +780,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
